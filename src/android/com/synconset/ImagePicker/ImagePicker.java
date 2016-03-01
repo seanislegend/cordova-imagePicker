@@ -28,11 +28,15 @@ public class ImagePicker extends CordovaPlugin {
 		if (action.equals("getPictures")) {
 			Intent intent = new Intent(cordova.getActivity(), MultiImageChooserActivity.class);
 			int max = 20;
+			String maxMessage = 'You have reached the maximum amount of allowed images';
 			int desiredWidth = 0;
 			int desiredHeight = 0;
 			int quality = 100;
 			if (this.params.has("maximumImagesCount")) {
 				max = this.params.getInt("maximumImagesCount");
+			}
+			if (this.params.has("maximumImagesMessage")) {
+				maxMessage = this.params.getString("maximumImagesMessage");
 			}
 			if (this.params.has("width")) {
 				desiredWidth = this.params.getInt("width");
@@ -44,6 +48,7 @@ public class ImagePicker extends CordovaPlugin {
 				quality = this.params.getInt("quality");
 			}
 			intent.putExtra("MAX_IMAGES", max);
+			intent.putExtra("MAX_IMAGES_MESSAGE", maxMessage);
 			intent.putExtra("WIDTH", desiredWidth);
 			intent.putExtra("HEIGHT", desiredHeight);
 			intent.putExtra("QUALITY", quality);

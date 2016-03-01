@@ -15,6 +15,8 @@ var ImagePicker = function() {
 *	options
 *		.maximumImagesCount - max images to be selected, defaults to 15. If this is set to 1, 
 *		                      upon selection of a single image, the plugin will return it.
+*       .maximumImagesMessages - the message to show when the user selects the maximum amount of
+*                                allowed images.
 *		.width - width to resize image to (if one of height/width is 0, will resize to fit the
 *		         other while keeping aspect ratio, if both height and width are 0, the full size
 *		         image will be returned)
@@ -28,6 +30,7 @@ ImagePicker.prototype.getPictures = function(success, fail, options) {
 	
 	var params = {
 		maximumImagesCount: options.maximumImagesCount ? options.maximumImagesCount : 15,
+		maximumImagesMessage: options.maximumImagesMessage ? options.maximumImagesMessage : 'You have reached the maximum amount of allowed images',
 		width: options.width ? options.width : 0,
 		height: options.height ? options.height : 0,
 		quality: options.quality ? options.quality : 100

@@ -46,12 +46,36 @@ window.imagePicker.getPictures(
 );
 ```
 
+Example - Change the 'maximum allowed' message as images are added in different goes:
+```javascript
+var images = [];
+var maxImages = 10;
+window.imagePicker.getPictures(
+    function(results) {
+        for (var i = 0; i < results.length; i++) {
+            console.log('Image URI: ' + results[i]);
+            images.push(results[i]);
+        }
+    }, function (error) {
+        console.log('Error: ' + error);
+    }, {
+        maximumImagesCount: maxImages,
+        maximumImagesMessage: 'You may only select a maximum of ' + (maxImages - images.length) + ' images',
+        width: 800
+    }
+);
+```
+
 ### Options
 
     options = {
         // max images to be selected, defaults to 15. If this is set to 1, upon
     	// selection of a single image, the plugin will return it.
     	maximumImagesCount: int,
+
+        // the message to show when the user selects the maximum amount of allowed
+        // images.
+        maximumImagesMessages: string,
     	
     	// max width and height to allow the images to be.  Will keep aspect
     	// ratio no matter what.  So if both are 800, the returned image
